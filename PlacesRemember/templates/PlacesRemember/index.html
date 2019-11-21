@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <title>Hello, Django!</title>
+    {% load socialaccount %}
+    {% providers_media_js %}
   </head>
   <body>
 
@@ -12,7 +14,7 @@
       <hr>
       <p>Пожалуйста авторизуйтесь</p>
       <button>
-        <a href="#">Войти с помощью Facebook</a>
+        <a href="{% provider_login_url 'facebook' method='oauth2' %}">Войти с помощью Facebook</a>
       </button>
   </div>
 
