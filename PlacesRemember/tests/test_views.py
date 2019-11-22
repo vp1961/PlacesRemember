@@ -43,13 +43,13 @@ class TestViews(TestCase):
     def test_create_place_POST_adds_new_place(self):
 
         response = self.client.post(self.create_place_url, {
-            'name': ['Test Place'],
+            'name': ['TestPlace'],
             'geom': ['{ "type": "Point", "coordinates": [ 56.013976, 92.852635 ] }',],
-            'comment': ['Test comment']
+            'comment': ['TestComment']
         })
 
         self.assertEquals(response.status_code, 301)
-        self.assertEquals(Place.objects.first().name, 'Test Place')
+        self.assertEquals(Place.objects.first().name, 'TestPlace')
 
     def test_create_place_POST_no_data(self):
 

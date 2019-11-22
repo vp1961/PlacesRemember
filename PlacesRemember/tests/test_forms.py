@@ -29,7 +29,7 @@ class TestForms(TestCase):
         form = PlaceForm(data={
             'name': 'TestName',
             'geom': '{ "type": "Point", "coordinates": [ 56.013976, 92.852635 ] }',
-            'comment': 'Testcomment'
+            'comment': 'TestComment'
         })
         form.is_valid()
         new_place = form.save(self.user)
