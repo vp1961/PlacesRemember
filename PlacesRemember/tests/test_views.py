@@ -44,7 +44,7 @@ class TestViews(TestCase):
 
         response = self.client.post(self.create_place_url, {
             'name': ['Test Place'],
-            'geom': ['{"type":"Point","coordinates":[56.013976,92.852635]}'],
+            'geom': ['{ "type": "Point", "coordinates": [ 56.013976, 92.852635 ] }',],
             'comment': ['Test comment']
         })
 

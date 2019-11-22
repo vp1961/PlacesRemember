@@ -18,7 +18,7 @@ class TestForms(TestCase):
     def test_place_form_valid_data(self):
         form = PlaceForm(data={
             'name': 'TestName',
-            'geom': '{"type":"Point", "coordinates":[56.013976,92.852635]}',
+            'geom': '{ "type": "Point", "coordinates": [ 56.013976, 92.852635 ] }',
             'comment': 'TestComment'
         })
 
@@ -28,7 +28,7 @@ class TestForms(TestCase):
 
         form = PlaceForm(data={
             'name': 'TestName',
-            'geom': '{"type":"Point", "coordinates":[56.013976,92.852635]}',
+            'geom': '{ "type": "Point", "coordinates": [ 56.013976, 92.852635 ] }',
             'comment': 'Testcomment'
         })
         form.is_valid()
@@ -37,6 +37,6 @@ class TestForms(TestCase):
         self.assertEquals(Place.objects.first().name, 'TestName')
         self.assertEquals(
             Place.objects.first().location.json,
-            '{ "type": "Point", "coordinates":[56.013976,92.852635]}'
+            '{ "type": "Point", "coordinates": [ 56.013976, 92.852635 ] }',
         )
         self.assertEquals(Place.objects.first().comment, 'TestComment')
