@@ -34,7 +34,7 @@ class TestForms(TestCase):
         form.is_valid()
         new_place = form.save(self.user)
 
-        self.assertEquals(Place.objects.first().name, 'Test Name')
+        self.assertEquals(Place.objects.first().name, 'TestName')
         self.assertEquals(
             Place.objects.first().location.json,
             '{ "type": "Point", "coordinates":[56.013976,92.852635]}'
