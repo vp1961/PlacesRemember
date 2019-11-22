@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+{% load leaflet_tags %}
+<html>
+
+<head>
+    {% leaflet_js %}
+    {% leaflet_css %}
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <p>{{ user.get_full_name}}, ты успешно авторизовался!</p>
+    <a href="{% url 'create' %}">Добавить воспоминание еще одно воспоминание!</a>
+    <br>
+    <a href="{% url 'places' %}">Назад к воспоминаниям</a>
+    <br>
+    {{ place.name }}
+    <script type="text/javascript">
+        function mark_location(map, options) {
+            var raw_data = '{{ place.location.geojson|escapejs }}';
+            var data = JSON.parse(raw_data);
+            L.geoJSON(data).addTo(map);
+        }
+    </script>
+
+    {% leaflet_map "gis" callback="window.mark_location" %}
+    {{ place.comment }}
+
+</body>
+
+</html>

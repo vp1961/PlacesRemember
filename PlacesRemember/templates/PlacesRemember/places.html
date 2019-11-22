@@ -1,11 +1,33 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Hello, Django!</title>
-  </head>
-  <body>
-    <p>{{ user.get_full_name}}, ты успешно авторизовался!</p>
+
+<head>
+  <meta charset="utf-8">
+  <title>Hello, Django!</title>
+</head>
+
+<body>
+  <p>{{ user.get_full_name}}, ты успешно авторизовался!</p>
+  {% if not user_places %}
+  <div>
+    <p>У вас нет ни одного воспоминания.</p>
     <a href="{% url 'create' %}" role="button">Добавить воспоминание</a>
-  </body>
+  </div>
+  {% else %}
+  <a href="{% url 'create' %}" role="button">Добавить воспоминание</a>
+
+  <p>Добавленные ранее:</p>
+  <div>
+    {% for place in user_places %}
+    <br>
+    <a href="{% url 'place_detail' place.id %}">
+      {{ place.name }}
+    </a>
+    {% endfor %}
+
+  </div>
+
+  {% endif %}
+</body>
+
 </html>

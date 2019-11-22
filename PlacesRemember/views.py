@@ -1,14 +1,33 @@
 from django.shortcuts import render
+from .models import Place
 from .forms import PlaceForm
 from django.views.generic import View
 from django.shortcuts import redirect
 
+
 def index(request):
-    return render(request,'PlacesRemember/index.html')
+    return render(request, 'PlacesRemember/index.html')
+
+
+def place_detail(request, id):
+    place = Place.objects.get(id=id)
+    print(dir(place.location))
+    print(place.location.geojson)
+    return render(
+        request,
+        'PlacesRemember/place_detail.html',
+        context={'place': place}
+    )
 
 
 def places(request):
-    return render(request,'PlacesRemember/places.html')
+    user_places = Place.objects.filter(author=request.user)
+
+    return render(
+        request,
+        'PlacesRemember/places.html',
+        context={'user_places': user_places})
+
 
 class PlaceCreate(View):
     def get(self, request):
@@ -16,7 +35,7 @@ class PlaceCreate(View):
         print(request.user)
 
         return render(
-            request, 'PlacesRemember/place_create.html', 
+            request, 'PlacesRemember/place_create.html',
             context={'place_form': place_form})
 
     def post(self, request):
@@ -28,6 +47,6 @@ class PlaceCreate(View):
 
             return redirect('/places/', permanent=True)
         return render(
-            request, 
+            request,
             'PlacesRemember/place_create.html',
             context={'place_form': bound_place_form})
