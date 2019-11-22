@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load leaflet_tags %}
+<html>
+<head>
+    {% leaflet_js plugins="forms" %}
+    {% leaflet_css plugins="forms" %}
+    <title>Hello, Django</title>
+</head>
+<body>
+
+    <form action="{% url 'create' %}" method="POST">
+        {% csrf_token %}
+      <fieldset>
+        <legend>Сохраните ваше любимое место</legend>
+
+        <div>
+          <label>{{ place_form.name.label }}</label>
+          {{ place_form.name }}
+        </div>
+
+        <div>
+          <label>{{ place_form.geom.label }}</label>
+          {{ place_form.geom }}
+        </div>
+
+        <div>
+          <label>{{ place_form.comment.label }}</label>
+          {{ place_form.comment }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+      </fieldset>
+</form>
+
+</body>
+</html> 

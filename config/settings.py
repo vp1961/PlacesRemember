@@ -148,5 +148,5 @@ SPATIALITE_LIBRARY_PATH = 'mod_spatialite.so'
 
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (56.01, 92.85),
-    'DEFAULT_ZOOM': 15,
+    'DEFAULT_ZOOM': 12,
 }
