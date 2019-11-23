@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Hello, Django!</title>
-    {% load socialaccount %}
-    {% providers_media_js %}
-  </head>
-  <body>
+
+<head>
+  <meta charset="utf-8">
+  <title>Hello, Django!</title>
+  {% load socialaccount %}
+  {% providers_media_js %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
 
   <div>
     <h1>Большой заголовок!</h1>
-    <p></p>Тут описание функционала приложения</p>
-      <hr>
-      <p>Пожалуйста авторизуйтесь</p>
-      <button>
-        <a href="{% provider_login_url 'facebook' method='oauth2' %}">Войти с помощью Facebook</a>
-      </button>
+    <p class="test">Тут описание функционала приложения</p>
+    <hr>
+    <p>Пожалуйста авторизуйтесь</p>
+    <button>
+      <a href="{% provider_login_url 'facebook' method='oauth2' %}">Войти с помощью Facebook</a>
+    </button>
   </div>
 
-  </body>
+</body>
+
 </html>
