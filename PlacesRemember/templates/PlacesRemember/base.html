@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://kit.fontawesome.com/8a2ad1040f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    {% block scripts %}
+    {% endblock %}
+
+    <title>
+        {% block title %}
+        Title
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+    <div class="app inner-page">
+
+        <header class="header">
+            <nav class="navbar">
+                <ul class="main-nav">
+                    <li class="nav-item">
+                        <a href="{% url 'places' %}" class="nav-link">Мои воспоминания</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'create' %}" class="nav-link">Добавить воспоминание</a>
+                    </li>
+                </ul>
+                <ul class="user-nav">
+                    <li class="user-wrap">
+                        <img class="user-image" src='/static/images/photo_2019-11-11_20-02-33.jpg' alt='avatar' />
+                        <div class="user-name"> 
+                                {% if user.first_name %}
+                                    {{ user.first_name }}
+                                {% else %}
+                                    User
+                                {% endif %}
+                            </div>
+                    </li>
+                    <li class="button logout__button">
+                        <a href="{% url 'account_logout' %}">
+                            Выйти
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+    </div>
+</body>
+
+</html>

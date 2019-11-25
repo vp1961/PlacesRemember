@@ -1,33 +1,25 @@
-<!doctype html>
-<html>
+{% extends 'PlacesRemember/base.html' %}
 
-<head>
-  <meta charset="utf-8">
-  <title>Hello, Django!</title>
-</head>
+{% block title %}
+Мои воспоминания
+{% endblock %}
 
-<body>
-  <p>{{ user.get_full_name}}, ты успешно авторизовался!</p>
-  {% if not user_places %}
-  <div>
-    <p>У вас нет ни одного воспоминания.</p>
-    <a href="{% url 'create' %}" role="button">Добавить воспоминание</a>
-  </div>
-  {% else %}
-  <a href="{% url 'create' %}" role="button">Добавить воспоминание</a>
+{% block content %}
+{% if user_places %}
+<div class="memories-wrap">
+    <h1>Воспоминания</h1>
+    <ul class="list-memories">
+        {% for place in user_places %}
+        <li class="memories-item">
+            <a href="{% url 'place_detail' place.id %}">
+               {{ place.name}}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% else %}
+<p>У вас нет ни одного воспоминания.</p>
+{% endif %}
 
-  <p>Добавленные ранее:</p>
-  <div>
-    {% for place in user_places %}
-    <br>
-    <a href="{% url 'place_detail' place.id %}">
-      {{ place.name }}
-    </a>
-    {% endfor %}
-
-  </div>
-
-  {% endif %}
-</body>
-
-</html>
+{% endblock %}

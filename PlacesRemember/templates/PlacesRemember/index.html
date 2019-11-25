@@ -1,27 +1,32 @@
 <!DOCTYPE html>
-<html>
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://kit.fontawesome.com/8a2ad1040f.js" crossorigin="anonymous"></script>
 
-<head>
-  <meta charset="utf-8">
-  <title>Hello, Django!</title>
-  {% load socialaccount %}
-  {% providers_media_js %}
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
+    <title>Hello, world!</title>
+  </head>
+  <body>
 
-<body>
-
-  <div>
-    <h1>Большой заголовок!</h1>
-    <p class="test">Тут описание функционала приложения</p>
-    <hr>
-    <p>Пожалуйста авторизуйтесь</p>
-    <button>
-      <a href="{% provider_login_url 'facebook' method='oauth2' %}">Войти с помощью Facebook</a>
-    </button>
+  <div class="app start-page">
+    <main class="content">
+      <h1>Добро пожаловать!</h1>
+      <div class="description">
+        <p>Это приложение позволяет хранить воспоминания о посещённых местах.</p>
+        <p>Авторизуйтесь, чтобы попробовать.</p>
+        <a href="{% provider_login_url 'facebook' method='js_sdk' %}" role="button"
+         class="button login__button">
+            <i class="icon fab fa-facebook"></i>
+                Войти с помощью Facebook
+        </a>
+      </div>
+    </main>
   </div>
 
-</body>
-
+  </body>
 </html>

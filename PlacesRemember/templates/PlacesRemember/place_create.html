@@ -1,36 +1,38 @@
-<!DOCTYPE html>
+{% extends 'PlacesRemember/base.html' %}
 {% load leaflet_tags %}
-<html>
-<head>
-    {% leaflet_js plugins="forms" %}
-    {% leaflet_css plugins="forms" %}
-    <title>Hello, Django</title>
-</head>
-<body>
 
-    <form action="{% url 'create' %}" method="POST">
-        {% csrf_token %}
-      <fieldset>
-        <legend>Сохраните ваше любимое место</legend>
+{% block scripts %}
+  {% leaflet_js plugins="forms" %}
+  {% leaflet_css plugins="forms" %}
+{% endblock %}
 
-        <div>
-          <label>{{ place_form.name.label }}</label>
-          {{ place_form.name }}
-        </div>
+{% block title %}
+  Создать воспоминание
+{% endblock %}
 
-        <div>
-          <label>{{ place_form.geom.label }}</label>
-          {{ place_form.geom }}
-        </div>
+{% block content %}
 
-        <div>
-          <label>{{ place_form.comment.label }}</label>
-          {{ place_form.comment }}
-        </div>
+<form action="{% url 'create' %}" method="POST" class="create-memory-wrap">
+  {% csrf_token %}
+<fieldset class="create-memory">
+  <legend>Сохраните ваше любимое место</legend>
 
-        <button type="submit" class="btn btn-primary">Сохранить</button>
-      </fieldset>
+  <div class="memory__name">
+    <label>{{ place_form.name.label }}:</label>
+    {{ place_form.name }}
+  </div>
+
+  <div class="memory__geom">
+    <label>{{ place_form.geom.label }}:</label>
+    {{ place_form.geom }}
+  </div>
+
+  <div class="memory__comment">
+    <label>{{ place_form.comment.label }}:</label>
+    {{ place_form.comment }}
+  </div>
+
+  <button type="submit" class="button save-button">Сохранить</button>
+</fieldset>
 </form>
-
-</body>
-</html> 
+{% endblock %}
